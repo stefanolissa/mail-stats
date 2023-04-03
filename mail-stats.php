@@ -3,7 +3,7 @@
 /*
  * Plugin Name: Mail Statistics
  * Description: Collects basic statistics on the mailing activity and shows them in the Site Health page
- * Version 1.0.0
+ * Version: 1.0.0
  * Requires at least: 4.6
  * Author: satollo
  * Author URI: https://www.satollo.net

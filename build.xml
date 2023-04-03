@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="" default="package">
+
+    <target name="package">
+        
+        <basename property="dir" file="${project.basedir}"/>
+        <echo>Basedir: ${dir}</echo>
+        
+        <propertyregex pattern="(.*)" match="$1" property="slug" subject="${dir}"/>
+        <echo>Slug: ${slug}</echo>
+        
+        <loadfile property="plugin" file="${slug}.php"/>
+        
+        <propertyregex pattern="Version: ([^\s]+)" match="$1" property="version" subject="${plugin}"/>
+        <echo>Version: ${version}</echo>
+        
+        <!--
+        <propertyprompt propertyName="version" defaultValue=""
+                        promptText="Enter the version number" />
+        <echo>${version}</echo>
+        -->
+        
+        <property name="zipfile" value="../${dir}-${version}.zip"/>
+        <delete file="${zipfile}"/>
+        <zip destfile="${zipfile}">
+         <fileset dir="..">
+             <include name="${dir}/**"/>
+             <exclude name="${dir}/.git/**" />
+             <exclude name="${dir}/.gitignore" />
+             <exclude name="${dir}/nbproject/**" />
+             <exclude name="${dir}/build.xml" />
+             <exclude name="${dir}/*.log" />
+         </fileset>
+        </zip>
+        
+        
+    </target>
+</project>
