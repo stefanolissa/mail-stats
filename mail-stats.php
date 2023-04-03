@@ -14,7 +14,7 @@ class MailStats {
 
     var $start = 0;
 
-    protected function __construct() {
+    function __construct() {
 
         add_filter('pre_wp_mail', [$this, 'pre_wp_mail'], 1, 1);
 
