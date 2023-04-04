@@ -14,6 +14,9 @@ class MailStats {
 
     var $start = 0;
 
+    /**
+     * Keep the code executed on load at minimum.
+     */
     function __construct() {
 
         add_filter('pre_wp_mail', [$this, 'pre_wp_mail'], 1, 1);
@@ -26,7 +29,7 @@ class MailStats {
     function pre_wp_mail($result) {
         static $filters = false;
 
-        // There are no reason to add filter on each page load, just add them if we know an email is going to be sent
+        // There are no reason to add filters on each page load, just add them if we know an email is going to be sent
         if (!$filters) {
             $filters = true;
 
@@ -55,6 +58,7 @@ class MailStats {
         update_option('mail_stats', $stats, false);
     }
 
+    // See https://developer.wordpress.org/reference/hooks/debug_information/
     function debug_information($info) {
 
         $stats = get_option('mail_stats', ['count' => 0, 'duration' => 0]);
